@@ -2,7 +2,6 @@
 config.py
 *.mp4
 Bot/Reddit/temp.txt
-config.py
 *.pyc
 .idea/YoutubeRedditBot.iml
 .idea/vcs.xml
