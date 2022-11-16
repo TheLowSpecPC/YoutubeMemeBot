@@ -27,7 +27,7 @@ def chrome():
             # Upload
             driver.get(config.upload_button)
             sleep(2)
-            driver.find_element(By.NAME, "Filedata").send_keys(down+"\\"+config.name)
+            driver.find_element(By.CSS_SELECTOR,"#content > input[type=file]").send_keys(down+"\\"+config.name)
             sleep(60)
             notkids = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "VIDEO_MADE_FOR_KIDS_NOT_MFK")))
             notkids.click()
