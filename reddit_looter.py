@@ -2,6 +2,7 @@ import praw
 import requests, sys
 import config,os
 from RedDownloader import RedDownloader
+cwd = os.getcwd()
 
 reddit = praw.Reddit(
     client_id= config.client_id,
@@ -15,18 +16,17 @@ def links():
     no = 0
     sub = config.subreddit
     # Clearing the folder
-    for i in os.listdir("Bot\\Reddit"):
+    for i in os.listdir(cwd+"/Bot/Reddit"):
         try:
-            os.remove("Bot\\Reddit\\" + i)
+            os.remove(cwd+"/Bot/Reddit/" + i)
         except:
             continue
     # Grabbing links
     for s in sub:
         no += round(config.limit/len(sub))
-        no1 = no+1
         try:
             for submission in reddit.subreddit(s).new(limit=None): #can use hot,top,new,rising
-                if x==no or x==no1 ==True:
+                if x>=no:
                     break
                 else:
                     if (submission.over_18==False and submission.is_video==True):
@@ -34,7 +34,7 @@ def links():
                         link = requests.get(urls).url
                         x+=1
                         RedDownloader.Download(url = link,
-                                                   output="Bot\\Reddit\\Output %04i" %x,
+                                                   output=cwd+"/Bot/Reddit/Output %04i" %x,
                                                    quality = 1080)
                         print(link)
                     else:

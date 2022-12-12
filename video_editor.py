@@ -4,12 +4,13 @@ from collections import defaultdict
 from pathlib import Path
 import config,os
 
+cwd = os.getcwd()
 down = str(Path.home()/"Downloads")
-def makeCompilation(path = "Bot\\Reddit\\",
+def makeCompilation(path =cwd+"/Bot/Reddit/",
                     introName = 'intro_vid',
                     outroName = 'Outro_vid',
                     totalVidLength = 10*60,
-                    outputFile = down+"\\"+config.name):
+                    outputFile = down+"/"+config.name):
 
     allVideos = []
     seenLengths = defaultdict(list)
@@ -64,4 +65,4 @@ def makeCompilation(path = "Bot\\Reddit\\",
     return "Finished Editing"
 
 if __name__ == "__main__":
-    makeCompilation(path = "Bot\\Reddit\\",outputFile = down+"\\"+config.name)
+    makeCompilation(path = "Bot/Reddit/",outputFile = down+"/"+config.name)
